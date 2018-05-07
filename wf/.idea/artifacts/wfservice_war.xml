@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wfservice:war">
+    <output-path>$PROJECT_DIR$/wfservice/target</output-path>
+    <root id="archive" name="wf-service.war">
+      <element id="artifact" artifact-name="wfservice:war exploded" />
+    </root>
+  </artifact>
+</component>

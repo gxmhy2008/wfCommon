@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>wf</artifactId>
+        <groupId>com.ningkangkj.wf</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>wf-cms</artifactId>
+    <packaging>war</packaging>
+    <name>wf-cms</name>
+
+    <properties>
+        <servlet-api.version>2.5</servlet-api.version>
+        <spring-wind.version>1.1.3</spring-wind.version>
+        <velocity.version>1.7</velocity.version>
+        <velocity-tools.version>2.0</velocity-tools.version>
+
+        <!--log-->
+        <logback-classic.version>1.1.7</logback-classic.version>
+        <logback-ext-spring.version>0.1.4</logback-ext-spring.version>
+        <!--把老的jcl日志重定向到slf4j日志里面-->
+        <jcl-over-slf4j.version>1.7.21</jcl-over-slf4j.version>
+        <slf4j-version>1.7.25</slf4j-version>
+
+        <!--data-->
+        <druid.version>1.0.18</druid.version>
+        <mysql-connector-java.version>5.1.38</mysql-connector-java.version>
+        <mail.version>1.4.7</mail.version>
+        <ehcache.version>2.6.11</ehcache.version>
+        <quartz.version>2.2.2</quartz.version>
+
+        <!--test-->
+        <junit.version>4.12</junit.version>
+    </properties>
+
+    <dependencies>
+        <!--log日志-->
+        <!-- JCL 1.2 implemented over SLF4J 用于把老的jcl日志重定向到slf4j日志中-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${jcl-over-slf4j.version}</version>
+        </dependency>
+        <!--slf4j接口包-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-version}</version>
+        </dependency>
+        <!--slf4j接口绑定器,相当于一个适配器,用来决定底层由哪个日志包实现-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j-version}</version>
+            <!-- <scope>test</scope> -->
+        </dependency>
+        <!--  日志实现包 -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+        <!--依赖的聚合模块包-->
+        <dependency>
+            <groupId>com.ningkangkj.wf</groupId>
+            <artifactId>wf-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--servlet包 provided表明该包只在编译和测试的时候用,所以当启动tomcat的时候,就不会和tomcat中的servlet-api包冲突了-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>2.0.5</version>
+        </dependency>
+
+        <!--velocity配置-->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-tools</artifactId>
+            <version>${velocity-tools.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>dom4j</artifactId>
+                    <groupId>dom4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>struts-core</artifactId>
+                    <groupId>org.apache.struts</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>struts-titles</artifactId>
+                    <groupId>org.apache.struts</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>struts-taglib</artifactId>
+                    <groupId>org.apache.struts</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>${velocity.version}</version>
+        </dependency>
+
+        <!--数据库配置-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
+        </dependency>
+
+        <!--缓存配置-->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>${ehcache.version}</version>
+        </dependency>
+
+        <!--quartz配置-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>4.1.7.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jobs</artifactId>
+            <version>${quartz.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--测试包-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- simple encoder and decoders for various formats such as Base64 and Hexadecimal-->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+        </dependency>
+
+        <!--http协议客户端实现包-->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+
+        <!--网络通信,mina包-->
+        <dependency>
+            <groupId>org.apache.mina</groupId>
+            <artifactId>mina-core</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+
+        <!--apache通用数据库连接池-->
+<!--        <dependency>
+            <groupId>org.apache.commons.dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.0.0</version>
+        </dependency>-->
+
+        <!--TODO-->
+<!--        <dependency>
+            <groupId>org.olap4j</groupId>
+            <artifactId>olap4j</artifactId>
+            <version>0.9.7.309-JS-3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>spring-wind</artifactId>
+            <version>${spring-wind.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>sqljdbc4</groupId>
+            <artifactId>sqljdbc4-connector-java</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        &lt;!&ndash;不确定是不是oracle的驱动包&ndash;&gt;
+        <dependency>
+            <groupId>ojdbc</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mindprod</groupId>
+            <artifactId>common</artifactId>
+            <version>11</version>
+        </dependency>-->
+    </dependencies>
+
+
+    <build>
+        <finalName>wf-cms</finalName>
+        <!--项目编译时把相关目录下的文件添加到target文件夹相关路径下-->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <!--jetty插件,mvn jetty:run-->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.3.7.v20160115</version>
+                <configuration>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                        <descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
+                    </webApp>
+                    <stopKey>exit</stopKey>
+                    <stopPort>9091</stopPort>
+                    <webAppSourceDirectory>${project.basedir}/src/main/webapp</webAppSourceDirectory>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                    <httpConnector>
+                        <port>8080</port>
+                    </httpConnector>
+                </configuration>
+            </plugin>
+            <!--tomcat插件,mvn tomcat:run-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>tomcat-maven-plugin</artifactId>
+                <version>1.1</version>
+                <configuration>
+                    <path>/</path>
+                    <port>8080</port>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <warFile>${project.basedir}/${project.build.finalName}.war</warFile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

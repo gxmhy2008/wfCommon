@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wfcms:war">
+    <output-path>$PROJECT_DIR$/wfcms/target</output-path>
+    <root id="archive" name="wf-cms.war">
+      <element id="artifact" artifact-name="wfcms:war exploded" />
+    </root>
+  </artifact>
+</component>

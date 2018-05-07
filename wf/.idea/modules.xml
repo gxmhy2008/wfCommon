@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/commoncore/commoncore.iml" filepath="$PROJECT_DIR$/commoncore/commoncore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wf.iml" filepath="$PROJECT_DIR$/wf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wfcms/wfcms.iml" filepath="$PROJECT_DIR$/wfcms/wfcms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wfservice/wfservice.iml" filepath="$PROJECT_DIR$/wfservice/wfservice.iml" />
+    </modules>
+  </component>
+</project>
